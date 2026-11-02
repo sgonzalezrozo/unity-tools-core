@@ -1,4 +1,4 @@
-namespace Tools.Core
+namespace ToolsCore
 {
     /// <summary>
     /// Shared service registry for cross-tool runtime injection abstractions.

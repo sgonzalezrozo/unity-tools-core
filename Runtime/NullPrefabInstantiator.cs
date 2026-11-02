@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tools.Core
+namespace ToolsCore
 {
     /// <summary>
     /// Default implementation of IPrefabInstantiator for projects without IoC.

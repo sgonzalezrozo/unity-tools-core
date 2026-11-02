@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tools.Core
+namespace ToolsCore
 {
     /// <summary>
     /// Generic hook for IoC-backed MonoBehaviour injection.

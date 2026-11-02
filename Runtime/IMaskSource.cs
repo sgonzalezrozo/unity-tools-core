@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Tools.Core.Scripts.Interfaces
+namespace ToolsCore
 {
     /// <summary>
     /// Abstraction for objects that provide mask shape data for UI components.
-    /// Decouples mask calculation from specific UI implementations (UIAtom, etc).
+    /// Decouples mask calculation from specific UI implementations.
     /// Allows any shape/component to provide mask data via a common interface.
     /// </summary>
     public interface IMaskSource
