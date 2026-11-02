@@ -13,5 +13,13 @@ namespace Tools.Core
             get => monoBehaviourInjector;
             set => monoBehaviourInjector = value ?? new NullMonoBehaviourInjector();
         }
+
+        private static IPrefabInstantiator prefabInstantiator = new NullPrefabInstantiator();
+
+        public static IPrefabInstantiator PrefabInstantiator
+        {
+            get => prefabInstantiator;
+            set => prefabInstantiator = value ?? new NullPrefabInstantiator();
+        }
     }
 }

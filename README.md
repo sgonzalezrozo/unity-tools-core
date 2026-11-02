@@ -19,7 +19,7 @@ Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install Tools Co
 | `IPrefabInstantiator` | Instantiates a prefab, optionally with injection and data |
 | `NullPrefabInstantiator` | Uses `Object.Instantiate`. It ignores any data passed to it. |
 | `IInstantiable` | Marks a component for container-aware instantiation |
-| `ToolInjectionServices` | Holds the current `IMonoBehaviourInjector` |
+| `ToolInjectionServices` | Holds the current injector and prefab instantiator. |
 | `IMaskSource` | Provides mask shape data to UI components |
 
 ## Compatibility
@@ -77,9 +77,7 @@ public static class MyContainerBootstrap
 
 Passing `null` restores the default injector.
 
-## Limitations
-
-- `ToolInjectionServices` only holds the MonoBehaviour injector. There's no public way yet to register a custom `IPrefabInstantiator`, so other containers can't fully replace Fast IoC.
+To control prefab instantiation too, implement `IPrefabInstantiator` and assign it to `ToolInjectionServices.PrefabInstantiator`.
 
 ## Project status
 
