@@ -1,4 +1,4 @@
-namespace Tools.Core
+namespace ToolsCore
 {
     /// <summary>
     /// Generic marker for components that can participate in container-aware instantiation.

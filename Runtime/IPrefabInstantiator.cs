@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tools.Core
+namespace ToolsCore
 {
     /// <summary>
     /// Abstraction for instantiating prefabs with optional dependency injection support.

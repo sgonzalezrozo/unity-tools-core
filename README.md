@@ -54,7 +54,7 @@ https://github.com/sgonzalezrozo/unity-tools-core.git#v0.1.0
 Fast IoC registers itself automatically. To use another container, implement `IMonoBehaviourInjector` and register it before the first scene loads:
 
 ```csharp
-using Tools.Core;
+using ToolsCore;
 using UnityEngine;
 
 public sealed class MyContainerInjector : IMonoBehaviourInjector
