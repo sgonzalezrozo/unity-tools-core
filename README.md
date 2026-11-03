@@ -46,7 +46,7 @@ https://github.com/sgonzalezrozo/unity-tools-core.git
 To pin a release, add its tag:
 
 ```text
-https://github.com/sgonzalezrozo/unity-tools-core.git#v0.1.0
+https://github.com/sgonzalezrozo/unity-tools-core.git#v0.2.0
 ```
 
 ## Use your own container
@@ -81,7 +81,7 @@ To control prefab instantiation too, implement `IPrefabInstantiator` and assign 
 
 ## Project status
 
-This is a pre-release package at version `0.1.0`. Its API and behavior may change before `1.0.0`.
+This is a pre-release package at version `0.2.0`. Its API and behavior may change before `1.0.0`.
 
 > **TODO:** Add a roadmap link and breaking-change policy.
 
