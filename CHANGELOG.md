@@ -4,9 +4,13 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+### Removed
+
+- **Breaking:** Removed `IMaskSource`. It wasn't part of the injection API.
+
 ### Documentation
 
-- Added a package diagram, a Zenject example, the versioning policy and an explanation of `IMaskSource`.
+- Added a package diagram, a Zenject example and the versioning policy.
 - Added contributing, security and issue template files.
 - Added XML documentation to the remaining public APIs.
 
