@@ -34,9 +34,6 @@ Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install Tools Co
 | `NullPrefabInstantiator` | Uses `Object.Instantiate`. It ignores any data passed to it. |
 | `IInstantiable` | Marks a component for container-aware instantiation |
 | `ToolInjectionServices` | Holds the current injector and prefab instantiator. |
-| `IMaskSource` | Provides mask shape data to custom UI shapes. See the note below. |
-
-`IMaskSource` isn't part of the injection API, and none of the packages in this family use it yet. You can ignore it unless you're building a custom UI shape.
 
 ## Compatibility
 
