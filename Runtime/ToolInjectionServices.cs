@@ -8,6 +8,7 @@ namespace ToolsCore
     {
         private static IMonoBehaviourInjector monoBehaviourInjector = new NullMonoBehaviourInjector();
 
+        /// <summary>The current injector. Assigning null restores the default, which does nothing.</summary>
         public static IMonoBehaviourInjector MonoBehaviourInjector
         {
             get => monoBehaviourInjector;
@@ -16,6 +17,7 @@ namespace ToolsCore
 
         private static IPrefabInstantiator prefabInstantiator = new NullPrefabInstantiator();
 
+        /// <summary>The current prefab instantiator. Assigning null restores the default, which uses Object.Instantiate.</summary>
         public static IPrefabInstantiator PrefabInstantiator
         {
             get => prefabInstantiator;
