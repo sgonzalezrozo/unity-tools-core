@@ -3,7 +3,7 @@
 **Shared injection interfaces for Screen System, Recyclable Scroller and Fast IoC.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Unity 2022.3+](https://img.shields.io/badge/Unity-2022.3%2B-black?logo=unity)](#compatibility)
+[![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
 [![Version 0.2.0](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
@@ -42,7 +42,7 @@ Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install Tools Co
 
 | Requirement | Supported |
 |---|---|
-| Unity | 2022.3 or newer. This is the declared minimum. Tested versions aren't published yet. |
+| Unity | Tested on Unity 6 (`6000.3.16f1`). The package declares `2022.3` as its minimum, but older versions aren't tested yet. |
 | Scripting backend | Not verified yet. The package uses no reflection, so Mono and IL2CPP are expected to work. |
 | Platforms | Not verified yet |
 | Dependencies | None |
