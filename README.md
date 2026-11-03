@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
-[![Version 0.2.0](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
+[![Version 0.3.0](https://img.shields.io/badge/version-0.3.0-blue.svg)](CHANGELOG.md)
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
@@ -59,7 +59,7 @@ https://github.com/sgonzalezrozo/unity-tools-core.git
 To pin a release, add its tag:
 
 ```text
-https://github.com/sgonzalezrozo/unity-tools-core.git#v0.2.0
+https://github.com/sgonzalezrozo/unity-tools-core.git#v0.3.0
 ```
 
 ## Use your own container
@@ -142,7 +142,7 @@ The project container can't see bindings from a `SceneContext`. To inject scene 
 
 ## Project status
 
-This is a pre-release package at version `0.2.0`. Its API and behavior may change before `1.0.0`.
+This is a pre-release package at version `0.3.0`. Its API and behavior may change before `1.0.0`.
 
 Until `1.0.0`, minor versions (`0.x.0`) can include breaking changes, and patch versions (`0.x.y`) don't. Breaking changes are marked **Breaking** in the [changelog](CHANGELOG.md).
 
