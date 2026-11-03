@@ -8,6 +8,7 @@ namespace ToolsCore
     /// </summary>
     public interface IMonoBehaviourInjector
     {
+        /// <summary>Injects dependencies into a component, if it has any.</summary>
         void InjectIfNeeded(MonoBehaviour component);
     }
 
@@ -16,6 +17,7 @@ namespace ToolsCore
     /// </summary>
     public sealed class NullMonoBehaviourInjector : IMonoBehaviourInjector
     {
+        /// <inheritdoc />
         public void InjectIfNeeded(MonoBehaviour component)
         {
         }
