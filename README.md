@@ -8,7 +8,9 @@
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
-Like the packages that use it, it comes from tools I built on my own time and reused across my projects. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
+Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC, Screen System and Recyclable Scroller. UI Tweens and Enhanced Console don't use it.
+
+Like the packages that use it, it comes from tools I built on my own time in personal projects. It isn't used in production yet. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
 
 ## How the packages connect
 
@@ -144,7 +146,7 @@ The project container can't see bindings from a `SceneContext`. To inject scene 
 
 ## Project status
 
-This is a pre-release package at version `0.3.0`. Its API and behavior may change before `1.0.0`.
+This is a pre-release package at version `0.3.0`. Its API and behavior may change before `1.0.0`. Not yet used in a shipped game.
 
 Until `1.0.0`, minor versions (`0.x.0`) can include breaking changes, and patch versions (`0.x.y`) don't. Breaking changes are marked **Breaking** in the [changelog](CHANGELOG.md).
 
