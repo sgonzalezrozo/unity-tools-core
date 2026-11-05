@@ -8,6 +8,8 @@
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
+Like the packages that use it, it comes from tools I built on my own time and reused across my projects. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
+
 ## How the packages connect
 
 ```mermaid
