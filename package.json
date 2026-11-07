@@ -16,7 +16,18 @@
   "keywords": [
     "injection",
     "interfaces",
-    "core"
+    "core",
+    "unity",
+    "unity3d",
+    "unity6",
+    "unity-package",
+    "upm",
+    "csharp",
+    "gamedev",
+    "dependency-injection",
+    "di",
+    "zenject",
+    "vcontainer"
   ],
   "dependencies": {}
 }

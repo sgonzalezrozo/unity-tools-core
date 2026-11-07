@@ -1,0 +1,12 @@
+# Tools Core
+
+> Shared dependency injection interfaces for Unity tools: `IMonoBehaviourInjector`, `IPrefabInstantiator` and `ToolInjectionServices`. Lets Screen System and Recyclable Scroller work with Fast IoC, Zenject, VContainer or no container (falls back to `Object.Instantiate`). Required by Fast IoC, Screen System and Recyclable Scroller. No dependencies. MIT licensed, pre-release (0.x).
+
+## Docs
+
+- [README](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/README.md): installation, quick start, API, troubleshooting, FAQ
+- [Changelog](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/CHANGELOG.md)
+
+## Optional
+
+- [Unity Architecture Agents](https://github.com/sgonzalezrozo/unity-architecture-agents): architecture rules and a verify loop for AI coding agents on Unity

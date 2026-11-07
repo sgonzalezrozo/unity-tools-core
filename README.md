@@ -6,6 +6,8 @@
 [![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
 [![Version 0.3.0](https://img.shields.io/badge/version-0.3.0-blue.svg)](CHANGELOG.md)
 
+Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Screen System and Recyclable Scroller work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
+
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
 Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC, Screen System and Recyclable Scroller. UI Tweens and Enhanced Console don't use it.
@@ -143,6 +145,24 @@ public static class ZenjectBootstrap
 ```
 
 The project container can't see bindings from a `SceneContext`. To inject scene bindings, resolve the current scene's container instead.
+
+## FAQ
+
+### Do I need Tools Core?
+
+Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install it first, because Unity doesn't install Git dependencies automatically.
+
+### Can I use Screen System or Recyclable Scroller with Zenject or VContainer?
+
+Yes. Implement `IMonoBehaviourInjector` and `IPrefabInstantiator`, and assign them to `ToolInjectionServices`. See [Use your own container](#use-your-own-container).
+
+### What happens without a container?
+
+The defaults use `Object.Instantiate` and inject nothing.
+
+### Is it free for commercial use?
+
+Yes. It's MIT licensed.
 
 ## Project status
 
