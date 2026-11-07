@@ -1,6 +1,6 @@
 # Tools Core
 
-> Shared dependency injection interfaces for Unity tools: `IMonoBehaviourInjector`, `IPrefabInstantiator` and `ToolInjectionServices`. Lets Screen System and Recyclable Scroller work with Fast IoC, Zenject, VContainer or no container (falls back to `Object.Instantiate`). Required by Fast IoC, Screen System and Recyclable Scroller. No dependencies. MIT licensed, pre-release (0.x).
+> Shared dependency injection interfaces for Unity tools: `IMonoBehaviourInjector`, `IPrefabInstantiator` and `ToolInjectionServices`. Lets Screen System and Recyclable Scroller work with Fast IoC, Zenject, VContainer or no container (falls back to `Object.Instantiate`). Required by Fast IoC, Screen System and Recyclable Scroller. No dependencies. MIT licensed, pre-release (0.x), single author, no other users yet.
 
 ## Docs
 

@@ -160,6 +160,14 @@ Yes. Implement `IMonoBehaviourInjector` and `IPrefabInstantiator`, and assign th
 
 The defaults use `Object.Instantiate` and inject nothing.
 
+### How do I install it?
+
+In Unity, open **Window > Package Manager**, select **+ > Add package from git URL** and enter `https://github.com/sgonzalezrozo/unity-tools-core.git`. See [Installation](#installation).
+
+### Is it production-ready? Does anyone use it?
+
+Not yet. Tools Core is a pre-release package (`0.x`) by a single author. It isn't used in a shipped game, and it has no other users yet, so expect rough edges and API changes before `1.0.0`. Bug reports are very welcome. See [Project status](#project-status).
+
 ### Is it free for commercial use?
 
 Yes. It's MIT licensed.
