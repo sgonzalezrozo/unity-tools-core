@@ -4,6 +4,10 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- The package description, `llms.txt` and README tagline no longer name packages that aren't published yet.
+
 ## [0.3.1] - 2026-11-10
 
 ### Documentation

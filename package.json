@@ -2,7 +2,7 @@
   "name": "com.sgonzalezrozo.core",
   "version": "0.3.1",
   "displayName": "Tools Core",
-  "description": "Shared dependency injection interfaces (IMonoBehaviourInjector, IPrefabInstantiator) that let Screen System and Recyclable Scroller work with Fast IoC, Zenject, VContainer or no container.",
+  "description": "Shared dependency injection interfaces (IMonoBehaviourInjector, IPrefabInstantiator) that let Unity packages work with Fast IoC, Zenject, VContainer or no container.",
   "unity": "2022.3",
   "license": "MIT",
   "author": {

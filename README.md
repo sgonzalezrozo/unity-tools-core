@@ -1,12 +1,12 @@
 # Tools Core
 
-**Shared injection interfaces for Screen System, Recyclable Scroller and Fast IoC.**
+**Shared injection interfaces for Fast IoC and other Unity packages.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
 [![Version 0.3.1](https://img.shields.io/badge/version-0.3.1-blue.svg)](CHANGELOG.md)
 
-Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Screen System and Recyclable Scroller work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
+Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Unity packages work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
