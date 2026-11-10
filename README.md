@@ -4,13 +4,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
-[![Version 0.3.0](https://img.shields.io/badge/version-0.3.0-blue.svg)](CHANGELOG.md)
+[![Version 0.3.1](https://img.shields.io/badge/version-0.3.1-blue.svg)](CHANGELOG.md)
 
 Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Screen System and Recyclable Scroller work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
-Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC, Screen System and Recyclable Scroller. UI Tweens and Enhanced Console don't use it.
+Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC. Screen System and Recyclable Scroller, two UI packages that use it, aren't published yet. UI Tweens doesn't use it.
 
 Like the packages that use it, it comes from tools I built on my own time in personal projects. It isn't used in production yet. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
 
@@ -28,7 +28,7 @@ Screen System and Recyclable Scroller only know about Tools Core. Neither depend
 
 ## Do I need to install this myself?
 
-Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install Tools Core first, because Unity doesn't install Git dependencies automatically. UI Tweens and Enhanced Console don't need it.
+Yes, if you use Fast IoC. Install Tools Core first, because Unity doesn't install Git dependencies automatically. UI Tweens doesn't need it.
 
 ## What's included
 
@@ -65,7 +65,7 @@ https://github.com/sgonzalezrozo/unity-tools-core.git
 To pin a release, add its tag:
 
 ```text
-https://github.com/sgonzalezrozo/unity-tools-core.git#v0.3.0
+https://github.com/sgonzalezrozo/unity-tools-core.git#v0.3.1
 ```
 
 ## Use your own container
@@ -150,7 +150,7 @@ The project container can't see bindings from a `SceneContext`. To inject scene 
 
 ### Do I need Tools Core?
 
-Yes, if you use Fast IoC, Screen System or Recyclable Scroller. Install it first, because Unity doesn't install Git dependencies automatically.
+Yes, if you use Fast IoC. Install it first, because Unity doesn't install Git dependencies automatically.
 
 ### Can I use Screen System or Recyclable Scroller with Zenject or VContainer?
 
@@ -174,7 +174,7 @@ Yes. It's MIT licensed.
 
 ## Project status
 
-This is a pre-release package at version `0.3.0`. Its API and behavior may change before `1.0.0`. Not yet used in a shipped game.
+This is a pre-release package at version `0.3.1`. Its API and behavior may change before `1.0.0`. Not yet used in a shipped game.
 
 Until `1.0.0`, minor versions (`0.x.0`) can include breaking changes, and patch versions (`0.x.y`) don't. Breaking changes are marked **Breaking** in the [changelog](CHANGELOG.md).
 
@@ -188,11 +188,10 @@ Bug reports and pull requests are welcome. Please open an issue before starting 
 
 | Package | Purpose |
 |---|---|
+| [Unity Architecture Agents](https://github.com/sgonzalezrozo/unity-architecture-agents) | Architecture rules for coding agents |
 | [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc) | Code-generated dependency injection |
-| [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) | Declarative UI navigation |
 | [UI Tweens](https://github.com/sgonzalezrozo/unity-ui-tweens) | ECS-based UI animation |
-| [Recyclable Scroller](https://github.com/sgonzalezrozo/unity-recyclable-scroller) | Virtualized lists |
-| [Enhanced Console](https://github.com/sgonzalezrozo/unity-enhanced-console) | Unity Editor log triage |
+| [UI Foundations](https://github.com/sgonzalezrozo/unity-ui-foundations) | uGUI click Controllers and view states |
 
 ## License
 

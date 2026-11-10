@@ -25,7 +25,7 @@ Thanks for helping out. Bug reports, documentation fixes and pull requests are w
 
 ## Test your change
 
-This package has no automated tests yet. Check your change by compiling it in a project that also uses Fast IoC, Screen System or Recyclable Scroller.
+This package has no automated tests yet. Check your change by compiling it in a project that also uses Fast IoC.
 
 In your pull request, list the Unity version, scripting backend and platform you tested.
 

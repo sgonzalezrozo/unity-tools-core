@@ -4,13 +4,13 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-11-10
+
 ### Documentation
 
 - An FAQ, `llms.txt` and more package keywords.
-
-### Documentation
-
 - Said that the package isn't used in production or in a shipped game yet, and described it as shared code required by Fast IoC, Screen System and Recyclable Scroller.
+- Removed links to packages that aren't published yet. Screen System and Recyclable Scroller are named as unpublished.
 
 ## [0.3.0] - 2026-11-03
 
