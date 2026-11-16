@@ -1,0 +1,25 @@
+{
+    "name": "ToolsCore.VContainer",
+    "rootNamespace": "ToolsCore.VContainerAdapter",
+    "references": [
+        "ToolsCore",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "TOOLSCORE_VCONTAINER"
+    ],
+    "versionDefines": [
+        {
+            "name": "jp.hadashikick.vcontainer",
+            "expression": "1.0.0",
+            "define": "TOOLSCORE_VCONTAINER"
+        }
+    ],
+    "noEngineReferences": false
+}

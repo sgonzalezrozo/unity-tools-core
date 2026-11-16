@@ -4,8 +4,16 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-16
+
+### Added
+
+- `IInjectingPrefabInstantiator`: marks an instantiator that already injects what it creates, and `ToolInjectionServices.InstantiatorInjects` to check it. Tools that instantiate through such an instantiator don't inject the copy a second time.
+- VContainer adapter (`ToolsCore.VContainer`, `builder.UseToolsCore()`) and Zenject adapter (`ToolsCore.Zenject`, `ToolsCoreInstaller` or `ZenjectToolsCore.Use(Container)`). Each compiles only when its container is in the project, and registers an injector and an injecting instantiator. Compiled against VContainer 1.19.0 and Extenject's `master`.
+
 ### Documentation
 
+- The README's hand-written Zenject example, which registered an instantiator that injected without saying so, is replaced by the adapters and a section on not injecting twice.
 - The package description, `llms.txt` and README tagline no longer name packages that aren't published yet.
 
 ## [0.3.1] - 2026-11-10

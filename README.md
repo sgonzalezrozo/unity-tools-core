@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
-[![Version 0.3.1](https://img.shields.io/badge/version-0.3.1-blue.svg)](CHANGELOG.md)
+[![Version 0.4.0](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
 
 Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Unity packages work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
 
@@ -39,7 +39,9 @@ Yes, if you use Fast IoC. Install Tools Core first, because Unity doesn't instal
 | `IPrefabInstantiator` | Instantiates a prefab, optionally with injection and data |
 | `NullPrefabInstantiator` | Uses `Object.Instantiate`. It ignores any data passed to it. |
 | `IInstantiable` | Marks a component for container-aware instantiation |
-| `ToolInjectionServices` | Holds the current injector and prefab instantiator. |
+| `IInjectingPrefabInstantiator` | Marks an `IPrefabInstantiator` that already injects what it creates, so tools don't inject it a second time |
+| `ToolInjectionServices` | Holds the current injector and prefab instantiator. `InstantiatorInjects` tells tools whether the instantiator injects. |
+| VContainer and Zenject adapters | Optional. They compile only when VContainer or Extenject is in the project. See [Use VContainer](#use-vcontainer) and [Use Zenject](#use-zenject-extenject). |
 
 ## Compatibility
 
@@ -98,53 +100,61 @@ Passing `null` restores the default injector.
 
 To control prefab instantiation too, implement `IPrefabInstantiator` and assign it to `ToolInjectionServices.PrefabInstantiator`.
 
-### Example: Zenject
+### Don't inject twice
 
-This example connects [Extenject (Zenject)](https://github.com/Mathijs-Bakker/Extenject) using its project-wide container. Screen System and Recyclable Scroller then use Zenject without knowing about it.
+An instantiator built on a container's `InstantiatePrefab` already injects the copy. Mark it with `IInjectingPrefabInstantiator`, and tools that instantiate through it (Screen System) skip their own injection pass:
 
 ```csharp
-using ToolsCore;
-using UnityEngine;
-using Zenject;
-
-public sealed class ZenjectInjector : IMonoBehaviourInjector
+public sealed class MyContainerInstantiator : IInjectingPrefabInstantiator
 {
-    public void InjectIfNeeded(MonoBehaviour component)
-    {
-        ProjectContext.Instance.Container.Inject(component);
-    }
+    // Instantiate methods that create and inject the copy.
 }
+```
 
-public sealed class ZenjectPrefabInstantiator : IPrefabInstantiator
+Tools check `ToolInjectionServices.InstantiatorInjects`. An instantiator without the marker creates the copy, and the tool injects it with `MonoBehaviourInjector`.
+
+### Use VContainer
+
+With [VContainer](https://github.com/hadashiA/VContainer) in the project, the `ToolsCore.VContainer` assembly compiles by itself. Register it in your root `LifetimeScope`:
+
+```csharp
+using ToolsCore.VContainerAdapter;
+using VContainer;
+using VContainer.Unity;
+
+public class RootLifetimeScope : LifetimeScope
 {
-    private static DiContainer Container => ProjectContext.Instance.Container;
-
-    public GameObject Instantiate(GameObject prefab, Transform parent = null)
-        => Container.InstantiatePrefab(prefab, parent);
-
-    // Zenject has no equivalent of the data argument, so this example ignores it.
-    public GameObject Instantiate(GameObject prefab, Transform parent, object data)
-        => Container.InstantiatePrefab(prefab, parent);
-
-    public T Instantiate<T>(GameObject prefab, Transform parent = null) where T : Component
-        => Container.InstantiatePrefabForComponent<T>(prefab, parent);
-
-    public T Instantiate<T>(GameObject prefab, Transform parent, object data) where T : Component
-        => Container.InstantiatePrefabForComponent<T>(prefab, parent);
-}
-
-public static class ZenjectBootstrap
-{
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Register()
+    protected override void Configure(IContainerBuilder builder)
     {
-        ToolInjectionServices.MonoBehaviourInjector = new ZenjectInjector();
-        ToolInjectionServices.PrefabInstantiator = new ZenjectPrefabInstantiator();
+        builder.UseToolsCore();
     }
 }
 ```
 
-The project container can't see bindings from a `SceneContext`. To inject scene bindings, resolve the current scene's container instead.
+It sets an injector (`IObjectResolver.Inject`) and an instantiator (`IObjectResolver.Instantiate`, marked as injecting). Use the project-wide scope: a scope that's destroyed takes its resolver with it.
+
+### Use Zenject (Extenject)
+
+With [Extenject](https://github.com/Mathijs-Bakker/Extenject) installed as a package (`com.svermeulen.extenject`), the `ToolsCore.Zenject` assembly compiles by itself. If you imported it from the Asset Store instead, add `TOOLSCORE_ZENJECT` to **Scripting Define Symbols**.
+
+Add `ToolsCoreInstaller` to your `ProjectContext`'s installers, or call it from your own:
+
+```csharp
+using ToolsCore.ZenjectAdapter;
+using Zenject;
+
+public class GameInstaller : MonoInstaller
+{
+    public override void InstallBindings()
+    {
+        ZenjectToolsCore.Use(Container);
+    }
+}
+```
+
+It sets an injector (`DiContainer.Inject`) and an instantiator (`DiContainer.InstantiatePrefab`, marked as injecting). Use the project container: it lives for the whole session, and it can't see a `SceneContext`'s bindings.
+
+Both adapters are compiled against VContainer 1.19.0 and Extenject's current `master`. They haven't been run in a shipped game yet.
 
 ## FAQ
 
@@ -154,7 +164,7 @@ Yes, if you use Fast IoC. Install it first, because Unity doesn't install Git de
 
 ### Can I use Screen System or Recyclable Scroller with Zenject or VContainer?
 
-Yes. Implement `IMonoBehaviourInjector` and `IPrefabInstantiator`, and assign them to `ToolInjectionServices`. See [Use your own container](#use-your-own-container).
+Yes. Call `builder.UseToolsCore()` in a VContainer `LifetimeScope`, or add `ToolsCoreInstaller` to Zenject's `ProjectContext`. See [Use VContainer](#use-vcontainer) and [Use Zenject](#use-zenject-extenject). For another container, implement `IMonoBehaviourInjector` and `IPrefabInstantiator` yourself; see [Use your own container](#use-your-own-container).
 
 ### What happens without a container?
 

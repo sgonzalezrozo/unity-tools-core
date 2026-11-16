@@ -23,5 +23,12 @@ namespace ToolsCore
             get => prefabInstantiator;
             set => prefabInstantiator = value ?? new NullPrefabInstantiator();
         }
+
+        /// <summary>
+        /// True when the registered instantiator injects what it creates (<see cref="IInjectingPrefabInstantiator"/>).
+        /// Tools that instantiate through it must not inject the copy again.
+        /// </summary>
+        public static bool InstantiatorInjects
+            => prefabInstantiator is IInjectingPrefabInstantiator;
     }
 }

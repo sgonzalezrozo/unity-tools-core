@@ -1,0 +1,25 @@
+{
+    "name": "ToolsCore.Zenject",
+    "rootNamespace": "ToolsCore.ZenjectAdapter",
+    "references": [
+        "ToolsCore",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "TOOLSCORE_ZENJECT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.svermeulen.extenject",
+            "expression": "0.0.1",
+            "define": "TOOLSCORE_ZENJECT"
+        }
+    ],
+    "noEngineReferences": false
+}
