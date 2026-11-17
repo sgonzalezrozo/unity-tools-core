@@ -10,7 +10,7 @@ Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInje
 
 Tools Core lets these packages work with dependency injection without depending on one container. Screen System and UI Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
-Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC. Screen System and UI Scroller, two UI packages that use it, aren't published yet. UI Tweens doesn't use it.
+Tools Core is shared code, not a standalone tool: it's a required dependency of [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc), [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) and [UI Scroller](https://github.com/sgonzalezrozo/unity-ui-scroller). UI Tweens doesn't use it.
 
 Like the packages that use it, it comes from tools I built on my own time in personal projects. It isn't used in production yet. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
 
@@ -67,7 +67,7 @@ https://github.com/sgonzalezrozo/unity-tools-core.git
 To pin a release, add its tag:
 
 ```text
-https://github.com/sgonzalezrozo/unity-tools-core.git#v0.3.1
+https://github.com/sgonzalezrozo/unity-tools-core.git#v0.4.0
 ```
 
 ## Use your own container
