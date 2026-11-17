@@ -8,9 +8,9 @@
 
 Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Unity packages work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
 
-Tools Core lets these packages work with dependency injection without depending on one container. Screen System and Recyclable Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
+Tools Core lets these packages work with dependency injection without depending on one container. Screen System and UI Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
 
-Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC. Screen System and Recyclable Scroller, two UI packages that use it, aren't published yet. UI Tweens doesn't use it.
+Tools Core is shared code, not a standalone tool: it's a required dependency of Fast IoC. Screen System and UI Scroller, two UI packages that use it, aren't published yet. UI Tweens doesn't use it.
 
 Like the packages that use it, it comes from tools I built on my own time in personal projects. It isn't used in production yet. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
 
@@ -19,12 +19,12 @@ Like the packages that use it, it comes from tools I built on my own time in per
 ```mermaid
 flowchart LR
     SS[Screen System] -->|asks for injection| TC[Tools Core]
-    RS[Recyclable Scroller] -->|asks for instantiation| TC
+    RS[UI Scroller] -->|asks for instantiation| TC
     FI[Fast IoC] -->|registers its implementation| TC
     TC -->|no container registered| UN[Standard Unity Instantiate]
 ```
 
-Screen System and Recyclable Scroller only know about Tools Core. Neither depends on Fast IoC, so you can swap in another container or use none.
+Screen System and UI Scroller only know about Tools Core. Neither depends on Fast IoC, so you can swap in another container or use none.
 
 ## Do I need to install this myself?
 
@@ -162,7 +162,7 @@ Both adapters are compiled against VContainer 1.19.0 and Extenject's current `ma
 
 Yes, if you use Fast IoC. Install it first, because Unity doesn't install Git dependencies automatically.
 
-### Can I use Screen System or Recyclable Scroller with Zenject or VContainer?
+### Can I use Screen System or UI Scroller with Zenject or VContainer?
 
 Yes. Call `builder.UseToolsCore()` in a VContainer `LifetimeScope`, or add `ToolsCoreInstaller` to Zenject's `ProjectContext`. See [Use VContainer](#use-vcontainer) and [Use Zenject](#use-zenject-extenject). For another container, implement `IMonoBehaviourInjector` and `IPrefabInstantiator` yourself; see [Use your own container](#use-your-own-container).
 
