@@ -4,6 +4,12 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-11-18
+
+### Documentation
+
+- The README's description is plain text instead of a quote, and short enough for two lines.
+
 ## [0.4.1] - 2026-11-18
 
 ### Documentation
