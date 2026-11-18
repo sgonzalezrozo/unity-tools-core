@@ -1,83 +1,75 @@
-# Tools Core
+<div align="center">
 
-**Shared injection interfaces for Fast IoC and other Unity packages.**
+# Unity Tools Core
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Tested on Unity 6000.3](https://img.shields.io/badge/Unity-6000.3%20tested-black?logo=unity)](#compatibility)
-[![Version 0.4.0](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
+<sub>DESIGNED & BUILT BY</sub><br>
+**✦ [`SANTIAGO GONZÁLEZ ROZO (@sgonzalezrozo)`](https://github.com/sgonzalezrozo) ✦**
 
-Tools Core holds the shared dependency injection interfaces (`IMonoBehaviourInjector`, `IPrefabInstantiator`) that let Unity packages work with Fast IoC, Zenject (Extenject), VContainer or no container at all in Unity 6.
+> Shared dependency injection interfaces for Unity packages. Lets Screen System and UI Scroller work with Fast IoC, VContainer, Zenject (Extenject) or no container at all, without depending on any of them. No dependencies.
 
-Tools Core lets these packages work with dependency injection without depending on one container. Screen System and UI Scroller use the interfaces here, and Fast IoC implements them. Without a container, the defaults fall back to standard Unity instantiation.
+[![Unity](https://img.shields.io/badge/Unity-6000.3%20tested-black?style=for-the-badge&logo=unity)](Documentation~/api-reference.md#requirements)
+[![Version](https://img.shields.io/badge/version-0.4.1-blue?style=for-the-badge)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-Tools Core is shared code, not a standalone tool: it's a required dependency of [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc), [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) and [UI Scroller](https://github.com/sgonzalezrozo/unity-ui-scroller). UI Tweens doesn't use it.
+[**Installation**](#installation) • [**Key Features**](#key-features) • [**Quickstart**](#quickstart) • [**Containers**](Documentation~/containers.md) • [**API Reference**](Documentation~/api-reference.md) • [**FAQ**](Documentation~/faq.md)
 
-Like the packages that use it, it comes from tools I built on my own time in personal projects. It isn't used in production yet. I extracted it into this standalone package in November 2026. Earlier history lives in a private repository.
+<sub>[Project Status](Documentation~/project-status.md)</sub>
 
-## How the packages connect
+</div>
 
-```mermaid
-flowchart LR
-    SS[Screen System] -->|asks for injection| TC[Tools Core]
-    RS[UI Scroller] -->|asks for instantiation| TC
-    FI[Fast IoC] -->|registers its implementation| TC
-    TC -->|no container registered| UN[Standard Unity Instantiate]
-```
-
-Screen System and UI Scroller only know about Tools Core. Neither depends on Fast IoC, so you can swap in another container or use none.
-
-## Do I need to install this myself?
-
-Yes, if you use Fast IoC. Install Tools Core first, because Unity doesn't install Git dependencies automatically. UI Tweens doesn't need it.
-
-## What's included
-
-| Type | Purpose |
-|---|---|
-| `IMonoBehaviourInjector` | Injects dependencies into a MonoBehaviour |
-| `NullMonoBehaviourInjector` | Does nothing. It's the default when no container is registered. |
-| `IPrefabInstantiator` | Instantiates a prefab, optionally with injection and data |
-| `NullPrefabInstantiator` | Uses `Object.Instantiate`. It ignores any data passed to it. |
-| `IInstantiable` | Marks a component for container-aware instantiation |
-| `IInjectingPrefabInstantiator` | Marks an `IPrefabInstantiator` that already injects what it creates, so tools don't inject it a second time |
-| `ToolInjectionServices` | Holds the current injector and prefab instantiator. `InstantiatorInjects` tells tools whether the instantiator injects. |
-| VContainer and Zenject adapters | Optional. They compile only when VContainer or Extenject is in the project. See [Use VContainer](#use-vcontainer) and [Use Zenject](#use-zenject-extenject). |
-
-## Compatibility
-
-| Requirement | Supported |
-|---|---|
-| Unity | Tested on Unity 6 (`6000.3.16f1`). The package declares `2022.3` as its minimum, but older versions aren't tested yet. |
-| Scripting backend | Not verified yet. The package uses no reflection, so Mono and IL2CPP are expected to work. |
-| Platforms | Not verified yet |
-| Dependencies | None |
+---
 
 ## Installation
 
-Git must be installed on your machine.
+You need Tools Core if you use [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc), [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) or [UI Scroller](https://github.com/sgonzalezrozo/unity-ui-scroller). Unity doesn't install Git dependencies automatically, so add it before them.
 
-1. In Unity, open **Window > Package Manager**.
-2. Select **+ > Add package from git URL**.
-3. Enter:
+1. Open **Window > Package Manager** in Unity.
+2. Click **`+`** in the top-left corner and select **Add package from git URL...**
+3. Paste the URL below and click **Add**:
 
 ```text
 https://github.com/sgonzalezrozo/unity-tools-core.git
 ```
 
-To pin a release, add its tag:
+---
 
-```text
-https://github.com/sgonzalezrozo/unity-tools-core.git#v0.4.0
+## Key Features
+
+* **[No container lock-in](Documentation~/api-reference.md#how-the-packages-connect)**: packages ask Tools Core for injection, never a specific container.
+  Screen System and UI Scroller don't depend on Fast IoC, so you can swap in another container or use none.
+* **[Works without a container](Documentation~/containers.md#no-container)**: the defaults use `Object.Instantiate` and inject nothing.
+* **[VContainer and Zenject adapters](Documentation~/containers.md#use-vcontainer)**: one line to connect either.
+  They compile only when that container is in the project.
+* **[No double injection](Documentation~/containers.md#dont-inject-twice)**: an instantiator marked `IInjectingPrefabInstantiator` tells tools to skip their own pass.
+* **[Tiny and dependency-free](Documentation~/api-reference.md)**: a handful of interfaces and no reflection.
+
+---
+
+## Quickstart
+
+Pick the line for your container:
+
+```csharp
+// Fast IoC: nothing to do, it registers itself.
+
+// VContainer: in your root LifetimeScope.Configure
+builder.UseToolsCore();
+
+// Zenject (Extenject): in a ProjectContext installer
+ZenjectToolsCore.Use(Container);
+
+// Any other container: before the first scene loads
+ToolInjectionServices.MonoBehaviourInjector = new MyContainerInjector();
 ```
 
-## Use your own container
-
-Fast IoC registers itself automatically. To use another container, implement `IMonoBehaviourInjector` and register it before the first scene loads:
+<details>
+<summary><strong>View full sample script</strong></summary>
 
 ```csharp
 using ToolsCore;
 using UnityEngine;
 
+// Connect a container that has no adapter.
 public sealed class MyContainerInjector : IMonoBehaviourInjector
 {
     public void InjectIfNeeded(MonoBehaviour component)
@@ -96,113 +88,6 @@ public static class MyContainerBootstrap
 }
 ```
 
-Passing `null` restores the default injector.
+</details>
 
-To control prefab instantiation too, implement `IPrefabInstantiator` and assign it to `ToolInjectionServices.PrefabInstantiator`.
-
-### Don't inject twice
-
-An instantiator built on a container's `InstantiatePrefab` already injects the copy. Mark it with `IInjectingPrefabInstantiator`, and tools that instantiate through it (Screen System) skip their own injection pass:
-
-```csharp
-public sealed class MyContainerInstantiator : IInjectingPrefabInstantiator
-{
-    // Instantiate methods that create and inject the copy.
-}
-```
-
-Tools check `ToolInjectionServices.InstantiatorInjects`. An instantiator without the marker creates the copy, and the tool injects it with `MonoBehaviourInjector`.
-
-### Use VContainer
-
-With [VContainer](https://github.com/hadashiA/VContainer) in the project, the `ToolsCore.VContainer` assembly compiles by itself. Register it in your root `LifetimeScope`:
-
-```csharp
-using ToolsCore.VContainerAdapter;
-using VContainer;
-using VContainer.Unity;
-
-public class RootLifetimeScope : LifetimeScope
-{
-    protected override void Configure(IContainerBuilder builder)
-    {
-        builder.UseToolsCore();
-    }
-}
-```
-
-It sets an injector (`IObjectResolver.Inject`) and an instantiator (`IObjectResolver.Instantiate`, marked as injecting). Use the project-wide scope: a scope that's destroyed takes its resolver with it.
-
-### Use Zenject (Extenject)
-
-With [Extenject](https://github.com/Mathijs-Bakker/Extenject) installed as a package (`com.svermeulen.extenject`), the `ToolsCore.Zenject` assembly compiles by itself. If you imported it from the Asset Store instead, add `TOOLSCORE_ZENJECT` to **Scripting Define Symbols**.
-
-Add `ToolsCoreInstaller` to your `ProjectContext`'s installers, or call it from your own:
-
-```csharp
-using ToolsCore.ZenjectAdapter;
-using Zenject;
-
-public class GameInstaller : MonoInstaller
-{
-    public override void InstallBindings()
-    {
-        ZenjectToolsCore.Use(Container);
-    }
-}
-```
-
-It sets an injector (`DiContainer.Inject`) and an instantiator (`DiContainer.InstantiatePrefab`, marked as injecting). Use the project container: it lives for the whole session, and it can't see a `SceneContext`'s bindings.
-
-Both adapters are compiled against VContainer 1.19.0 and Extenject's current `master`. They haven't been run in a shipped game yet.
-
-## FAQ
-
-### Do I need Tools Core?
-
-Yes, if you use Fast IoC. Install it first, because Unity doesn't install Git dependencies automatically.
-
-### Can I use Screen System or UI Scroller with Zenject or VContainer?
-
-Yes. Call `builder.UseToolsCore()` in a VContainer `LifetimeScope`, or add `ToolsCoreInstaller` to Zenject's `ProjectContext`. See [Use VContainer](#use-vcontainer) and [Use Zenject](#use-zenject-extenject). For another container, implement `IMonoBehaviourInjector` and `IPrefabInstantiator` yourself; see [Use your own container](#use-your-own-container).
-
-### What happens without a container?
-
-The defaults use `Object.Instantiate` and inject nothing.
-
-### How do I install it?
-
-In Unity, open **Window > Package Manager**, select **+ > Add package from git URL** and enter `https://github.com/sgonzalezrozo/unity-tools-core.git`. See [Installation](#installation).
-
-### Is it production-ready? Does anyone use it?
-
-Not yet. Tools Core is a pre-release package (`0.x`) by a single author. It isn't used in a shipped game, and it has no other users yet, so expect rough edges and API changes before `1.0.0`. Bug reports are very welcome. See [Project status](#project-status).
-
-### Is it free for commercial use?
-
-Yes. It's MIT licensed.
-
-## Project status
-
-This is a pre-release package at version `0.3.1`. Its API and behavior may change before `1.0.0`. Not yet used in a shipped game.
-
-Until `1.0.0`, minor versions (`0.x.0`) can include breaking changes, and patch versions (`0.x.y`) don't. Breaking changes are marked **Breaking** in the [changelog](CHANGELOG.md).
-
-There's no public roadmap yet. Planned work is tracked in [issues](https://github.com/sgonzalezrozo/unity-tools-core/issues).
-
-## Contributing
-
-Bug reports and pull requests are welcome. Please open an issue before starting a large change. See the [contributing guide](.github/CONTRIBUTING.md) and [security policy](.github/SECURITY.md).
-
-## Related packages
-
-| Package | Purpose |
-|---|---|
-| [Unity Architecture Agents](https://github.com/sgonzalezrozo/unity-architecture-agents) | Architecture rules for coding agents |
-| [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc) | Code-generated dependency injection |
-| [UI Tweens](https://github.com/sgonzalezrozo/unity-ui-tweens) | ECS-based UI animation |
-| [UI Foundations](https://github.com/sgonzalezrozo/unity-ui-foundations) | uGUI click Controllers and view states |
-
-## License
-
-Released under the [MIT License](LICENSE).
+Every option, including prefab instantiation, is in [Containers](Documentation~/containers.md).

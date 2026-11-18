@@ -4,6 +4,13 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-18
+
+### Documentation
+
+- The README is now a short overview with installation, a quickstart and links. Its content moved into guides in `Documentation~/`: Containers, API Reference, FAQ and Project Status.
+- Installation instructions no longer pin a release tag.
+
 ## [0.4.0] - 2026-11-16
 
 ### Added

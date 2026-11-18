@@ -4,7 +4,11 @@
 
 ## Docs
 
-- [README](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/README.md): installation, quick start, API, troubleshooting, FAQ
+- [README](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/README.md): overview, installation, quickstart, links to every guide
+- [Containers](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/Documentation~/containers.md): no container, Fast IoC, VContainer, Zenject, your own container, avoiding double injection
+- [API Reference](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/Documentation~/api-reference.md): how the packages connect, types, requirements
+- [FAQ](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/Documentation~/faq.md)
+- [Project Status](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/Documentation~/project-status.md): status, versioning, contributing, related packages
 - [Changelog](https://github.com/sgonzalezrozo/unity-tools-core/blob/main/CHANGELOG.md)
 
 ## Optional
