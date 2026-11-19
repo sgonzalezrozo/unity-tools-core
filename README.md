@@ -8,7 +8,7 @@
 Shared dependency injection interfaces for Unity packages. Lets Screen System and UI Scroller work with Fast IoC, VContainer, Zenject or no container at all, without depending on any of them.
 
 [![Unity](https://img.shields.io/badge/Unity-6000.3%20tested-black?style=for-the-badge&logo=unity)](Documentation~/api-reference.md#requirements)
-[![Version](https://img.shields.io/badge/version-0.4.2-blue?style=for-the-badge)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.3-blue?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Installation**](#installation) • [**Key Features**](#key-features) • [**Quickstart**](#quickstart) • [**Containers**](Documentation~/containers.md) • [**API Reference**](Documentation~/api-reference.md) • [**FAQ**](Documentation~/faq.md)
