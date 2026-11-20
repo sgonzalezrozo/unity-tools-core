@@ -31,6 +31,8 @@ You need Tools Core if you use [Fast IoC](https://github.com/sgonzalezrozo/unity
 https://github.com/sgonzalezrozo/unity-tools-core.git
 ```
 
+**Assembly references.** If your code uses `IPrefabInstantiator`, `IInjectingPrefabInstantiator` and the container adapters from an assembly definition (`.asmdef`), add `ToolsCore` to its **Assembly Definition References**. Unity doesn't add it for you, and without it the build fails with `CS0246`.
+
 ---
 
 ## Key Features

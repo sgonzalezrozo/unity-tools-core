@@ -4,6 +4,10 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- The README says which assembly to reference (`ToolsCore`) from an assembly definition, and to let Unity finish importing and compiling Tools Core before adding the next package: adding one mid-import can log `ScriptableSingleton already exists` and "assets located in immutable packages were unexpectedly altered", which block nothing.
+
 ## [0.4.3] - 2026-11-19
 
 ### Changed
