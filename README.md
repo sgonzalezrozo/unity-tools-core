@@ -21,7 +21,7 @@ Shared dependency injection interfaces for Unity packages. Lets Screen System an
 
 ## Installation
 
-You need Tools Core if you use [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc), [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) or [UI Scroller](https://github.com/sgonzalezrozo/unity-ui-scroller). Unity doesn't install Git dependencies automatically, so add it before them.
+You need Tools Core if you use [Fast IoC](https://github.com/sgonzalezrozo/unity-fast-ioc), [Screen System](https://github.com/sgonzalezrozo/unity-screen-system) or [UI Scroller](https://github.com/sgonzalezrozo/unity-ui-scroller). Unity doesn't install Git dependencies automatically, so add it before them, and let Unity finish importing and compiling it before you add the next package. Adding a package while Unity is still importing another can log `ScriptableSingleton already exists` and `assets located in immutable packages were unexpectedly altered`: nothing is broken, so clear the Console and continue.
 
 1. Open **Window > Package Manager** in Unity.
 2. Click **`+`** in the top-left corner and select **Add package from git URL...**
