@@ -1,6 +1,6 @@
 {
   "name": "com.sgonzalezrozo.core",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "displayName": "Tools Core",
   "description": "Shared dependency injection interfaces (IMonoBehaviourInjector, IPrefabInstantiator) that let Unity packages work with Fast IoC, Zenject, VContainer or no container.",
   "unity": "2022.3",
