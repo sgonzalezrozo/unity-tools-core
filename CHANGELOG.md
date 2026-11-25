@@ -4,6 +4,12 @@ All notable changes to this package are documented in this file.
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-11-25
+
+### Added
+
+- `TaskExtensions.Forget(this Task, string context)`: starts a task from sync code and logs what it throws. Projects use it instead of copying it (the Store and the async rules).
+
 ## [0.4.4] - 2026-11-19
 
 ### Documentation
